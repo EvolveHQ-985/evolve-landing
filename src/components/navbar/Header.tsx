@@ -1,9 +1,10 @@
 // Header.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaInfoCircle, FaServicestack } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { MdOutlineHomeRepairService } from "react-icons/md";
+import { PiBuildingOffice } from "react-icons/pi";
+import { IoLogoFirebase } from "react-icons/io5";
 
 const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
 
@@ -156,7 +157,7 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <TbLayoutDashboardFilled className="text-2xl" /> <span>Our services</span>
+              <MdOutlineHomeRepairService className="text-2xl" /> <span>Our services</span>
             </a>
             <a
               href="#about"
@@ -167,7 +168,7 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <FaInfoCircle className="text-2xl" />
+              <PiBuildingOffice className="text-2xl" />
               <span>About us</span>
             </a>
             <a
@@ -179,7 +180,7 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <FaServicestack className="text-2xl" />
+              <IoLogoFirebase className="text-2xl" />
               <span>Products</span>
             </a>
           </div>
