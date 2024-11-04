@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
@@ -11,11 +11,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-// Lazy load components
-const MainLayouts = lazy(() => import("./App").then(module => ({ default: module.MainLayouts })));
-const Home = lazy(() => import("./App").then(module => ({ default: module.Home })));
-const Root = lazy(() => import("./App").then(module => ({ default: module.Root })));
-const NotFoundPage = lazy(() => import("./App").then(module => ({ default: module.NotFoundPage })));
+import {
+  MainLayouts,
+  Home,
+  Root,
+  NotFoundPage,
+} from "./App";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,10 +31,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
-    {/* ToastContainer should be outside of Suspense to load immediately */}
+    <RouterProvider router={router} />
+    {/* Move ToastContainer here, outside of the routing elements */}
     <ToastContainer
       position="top-right"
       autoClose={2000}
