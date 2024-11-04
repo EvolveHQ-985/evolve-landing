@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 
+:root{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Define keyframes for sliding in once and fading in repeatedly */
 @keyframes slideInOnceFadeIn {
     0% {
@@ -61,5 +72,19 @@ section::-webkit-scrollbar, div::-webkit-scrollbar, main::-webkit-scrollbar, bod
     .fade-svg{
         width: 394px;
         height: 327px;
+    }
+}
+
+@media(max-width: 360px){
+    .RightLineSvgs{
+        width: 360px;
+        height: 250px;
+    }
+}
+
+@media(max-width: 320px){
+    .RightLineSvgs{
+        width: 310px;
+        height: 250px;
     }
 }

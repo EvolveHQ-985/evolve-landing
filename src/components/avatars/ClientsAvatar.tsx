@@ -30,7 +30,7 @@ const ClientsAvatar: React.FC<ClientsAvatarProps> = ({ avatars }) => {
   };
 
   return (
-    <div className="flex items-center justify-center lg:justify-start w-full max-w-[20rem]">
+    <div className="flex items-center justify-center lg:justify-start w-full max-w-[25rem] lg:pb-9">
       {avatarsToShow.map((avatar, index) => (
         <div
           key={index}
@@ -48,13 +48,13 @@ const ClientsAvatar: React.FC<ClientsAvatarProps> = ({ avatars }) => {
       ))}
       {surplus > 0 && (
         <div
-          className="w-full max-w-[9rem] h-8 flex flex-col justify-center rounded-full bg-transparent pl-6"
+          className="w-full max-w-[12rem] h-8 flex flex-col justify-center rounded-full bg-transparent pl-6"
           style={{ marginLeft: '-0.8rem' }}
         >
           <span className="flex items-center font-bold">
             {formatSurplus(surplus)}&nbsp;<FaPlus className='text-[0.6rem]'/>
           </span>
-          <p className='text-sm md:text-md'>Worldwide clients</p>
+          <p className='text-sm md:text-xl'>Worldwide clients</p>
         </div>
       )}
     </div>

@@ -11,15 +11,15 @@ const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
+  // const handleLoginClick = () => {
+  //   navigate("/login");
+  // };
 
   // Detect which section is currently active on scroll
   useEffect(() => {
@@ -101,7 +101,6 @@ const Header: React.FC = () => {
           </a>
           <div className="flex items-center space-x-2 ">
             <button
-              onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded"
               aria-label="Login"
             >
@@ -186,7 +185,6 @@ const Header: React.FC = () => {
           </div>
           <div className="flex items-center w-full h-full max-h-[5rem] border-r-2 pr-4">
             <button
-              onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded w-full max-w-[20rem] font-semibold"
               aria-label="Login"
             >
