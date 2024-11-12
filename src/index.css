@@ -2,64 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Define keyframes for sliding in once and fading in repeatedly */
 @keyframes slideInOnceFadeIn {
-    0% {
-        opacity: 0;                  /* Start invisible */
-        transform: translateY(100%); /* Start below the visible area */
-    }
-    10% {
-        opacity: 1;                  /* Fade in */
-        transform: translateY(0);    /* Slide into position */
-    }
-    100% {
-        opacity: 1;                  /* Stay visible */
-        transform: translateY(0);    /* Stay in position */
-    }
+  0% {
+    opacity: 0; /* Start invisible */
+    transform: translateY(100%); /* Start below the visible area */
+  }
+  10% {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Slide into position */
+  }
+  100% {
+    opacity: 1; /* Stay visible */
+    transform: translateY(0); /* Stay in position */
+  }
 }
 
 @keyframes fadeInOnly {
-    0% { opacity: 0; }     /* Start invisible */
-    10% { opacity: 1; }    /* Fade in */
-    90% { opacity: 1; }    /* Stay visible */
-    100% { opacity: 0; }   /* Reset to invisible */
+  0% {
+    opacity: 0;
+  } /* Start invisible */
+  10% {
+    opacity: 1;
+  } /* Fade in */
+  90% {
+    opacity: 1;
+  } /* Stay visible */
+  100% {
+    opacity: 0;
+  } /* Reset to invisible */
 }
 
 /* Apply the slide-in once and fade repeatedly */
 .fade-svg {
-    animation: slideInOnceFadeIn 1s ease-in forwards, fadeInOnly 20s ease-in infinite 1s;
-    will-change: opacity, transform; /* Optimizes animation performance */
+  animation:
+    slideInOnceFadeIn 1s ease-in forwards,
+    fadeInOnly 20s ease-in infinite 1s;
+  will-change: opacity, transform; /* Optimizes animation performance */
 }
-
 
 /* Hide scrollbar in WebKit browsers (Chrome, Safari) */
-section, div, main, body {
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For IE and Edge */
+section,
+div,
+main,
+body {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For IE and Edge */
 }
 
-section::-webkit-scrollbar, div::-webkit-scrollbar, main::-webkit-scrollbar, body::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
+section::-webkit-scrollbar,
+div::-webkit-scrollbar,
+main::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
-@media(min-width: 861px){
-    .fade-svg{
-        width: 640px;
-        height: 630px;
-    }
-} 
-
-@media(max-width: 860px){
-    .fade-svg{
-        width: 547px;
-        height: 512px;
-    }
+@media (min-width: 861px) {
+  .fade-svg {
+    width: 640px;
+    height: 630px;
+  }
 }
 
-@media(max-width: 500px){
-    .fade-svg{
-        width: 394px;
-        height: 327px;
-    }
+@media (max-width: 860px) {
+  .fade-svg {
+    width: 547px;
+    height: 512px;
+  }
+}
+
+@media (max-width: 500px) {
+  .fade-svg {
+    width: 394px;
+    height: 327px;
+  }
 }

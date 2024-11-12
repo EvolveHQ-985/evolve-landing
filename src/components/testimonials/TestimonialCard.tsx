@@ -26,7 +26,7 @@ function TestimonialCard({
       {/* client review: client image */}
       <span
         title={`image of ${clientName} the ${clientTitle}`}
-        className="size-20 shrink-0 mb-3 border-2 rounded-full -mt-12 flex overflow-hidden items-center justify-center bg-white"
+        className="size-20 shrink-0 mb-3 rounded-full -mt-12 flex overflow-hidden items-center justify-center bg-white"
       >
         {clientImage && !imgError ? (
           <img
@@ -60,7 +60,7 @@ function TestimonialCard({
             color: "rgba(0, 0, 0, 0.8)",
           }}
         >
-          Client name
+          {clientName}
         </Typography>
       ) : (
         <Skeleton variant="text" animation="wave" width={"60%"} />

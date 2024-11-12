@@ -1,5 +1,7 @@
-import { Typography } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import TestimonialCard from "./TestimonialCard";
+import { useEffect, useRef, useState } from "react";
+import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 
 function Testimonials() {
   const EvolveReviewDatas: {
@@ -49,6 +51,69 @@ function Testimonials() {
       clientTitle: "COO, Stellar Dynamics",
     },
   ];
+  // State to track scroll behavior
+  const [testimonialsScrolls, setTestimonialsScrolls] = useState({
+    scrollsLeft: 0,
+    currentScroll: 0,
+  });
+
+  // Reference to hold the container element
+  const container = useRef<HTMLElement | null>(null);
+
+  // Calculate the total number of scrolls needed to reach the end of the container
+  function calculateScrollsLeft() {
+    if (container.current) {
+      const containerWidth = container.current.clientWidth;
+      const childWidth = container.current.children[0].clientWidth;
+      const totalChildren = container.current.children.length;
+
+      // Calculate the number of scroll "pages" needed
+      const scrollsLeft = Math.ceil(
+        (childWidth * totalChildren) / containerWidth
+      );
+      const currentScroll = Math.round(
+        container.current.scrollLeft / childWidth
+      );
+
+      // Update state with both scrollsLeft and currentScroll values
+      setTestimonialsScrolls({ scrollsLeft, currentScroll });
+    }
+  }
+
+  // Initialize and update scroll calculations on load and window resize
+  useEffect(() => {
+    calculateScrollsLeft();
+
+    window.addEventListener("resize", calculateScrollsLeft);
+    return () => {
+      window.removeEventListener("resize", calculateScrollsLeft);
+    };
+  }, []);
+
+  // Handle scrolling when `currentScroll` state changes
+  useEffect(() => {
+    if (container.current) {
+      const childWidth = container.current.children[0].clientWidth;
+
+      container.current.scrollTo({
+        left: childWidth * testimonialsScrolls.currentScroll,
+        behavior: "smooth",
+      });
+    }
+  }, [testimonialsScrolls.currentScroll]);
+
+  // Function to update the current scroll position
+  function scroller(direction: "left" | "right") {
+    setTestimonialsScrolls((prevState) => {
+      const newScroll =
+        direction === "left"
+          ? Math.max(prevState.currentScroll - 1, 0)
+          : Math.min(prevState.currentScroll + 1, prevState.scrollsLeft);
+
+      return { ...prevState, currentScroll: newScroll };
+    });
+  }
+
   return (
     <section className="flex flex-col gap-5 px-4 md:px-5 lg:px-[8rem] py-10 h-auto">
       <Typography
@@ -71,22 +136,47 @@ function Testimonials() {
         People that have worked with us always have something good to say. Here
         are some of the reviews we've gotten:
       </Typography>
-      <section className="w-fit min-h-fit max-w-full m-auto overflow-x-auto flex pt-10 box-border gap-4 snap-mandatory snap-x items-center justify-start">
-        {EvolveReviewDatas.map(
-          (
-            { clientImage, clientName, clientReviewContent, clientTitle },
-            index
-          ) => (
-            <TestimonialCard
-              key={index}
-              clientName={clientName}
-              clientImage={clientImage}
-              clientReviewContent={clientReviewContent}
-              clientTitle={clientTitle}
-            />
-          )
+
+      <div className="w-full relative isolate flex items-center justify-center h-fit">
+        <section
+          ref={container}
+          className="w-fit  min-h-fit max-w-full m-auto overflow-x-auto flex pt-10 box-border gap-4 snap-mandatory snap-x items-center justify-start"
+        >
+          {EvolveReviewDatas.map(
+            (
+              { clientImage, clientName, clientReviewContent, clientTitle },
+              index
+            ) => (
+              <TestimonialCard
+                key={index}
+                clientName={clientName}
+                clientImage={clientImage}
+                clientReviewContent={clientReviewContent}
+                clientTitle={clientTitle}
+              />
+            )
+          )}
+        </section>
+        {/* control buttons */}
+
+        {testimonialsScrolls.currentScroll !== 0 && (
+          <Fab
+            onClick={() => scroller("left")}
+            className="flex items-center animate-pulse-once justify-center size-fit -translate-y-1/2 top-1/2 !text-2xl !absolute left-3 !bg-blue-50 rounded-full z-10 !p-0"
+          >
+            <BsArrowLeftCircle />
+          </Fab>
         )}
-      </section>
+        {testimonialsScrolls.currentScroll !==
+          testimonialsScrolls.scrollsLeft && (
+          <Fab
+            onClick={() => scroller("right")}
+            className="flex animate-pulse-once items-center justify-center size-fit -translate-y-1/2 top-1/2 !text-2xl !absolute right-3 !bg-blue-50 rounded-full z-10 !p-0"
+          >
+            <BsArrowRightCircle />
+          </Fab>
+        )}
+      </div>
     </section>
   );
 }
