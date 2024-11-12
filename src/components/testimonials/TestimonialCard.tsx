@@ -17,11 +17,42 @@ function TestimonialCard({
   useEffect(() => {
     setImgError(false);
   }, [clientImage]);
+  useEffect(() => {
+    const tCardObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!entry.target.classList.contains("scale-100")) {
+              entry.target.classList.add("scale-100"); // set normalize look for item that is in view
+              entry.target.classList.remove("scale-90"); // remove reduced look for item that is in view
+            }
+          } else {
+            if (!entry.target.classList.contains("scale-90")) {
+              entry.target.classList.remove("scale-100"); // remove normalize look for item that is in view
+              entry.target.classList.add("scale-90"); // set reduced look for item that is in view
+            }
+          }
+        });
+      },
+      { threshold: 0.7 } // Trigger when 70% of the section is visible
+    );
+
+    const cards = document.querySelectorAll(".tCardObs");
+    cards.forEach((card) => {
+      tCardObs.observe(card);
+    });
+
+    return () => {
+      cards.forEach((card) => {
+        tCardObs.unobserve(card);
+      });
+    };
+  }, []);
 
   return (
     <Box
       title={`Review of ${clientName} the ${clientTitle}`}
-      className="w-64 shrink-0 snap-center h-80 max-w-[75%] bg-blue-50 p-4 rounded-md flex flex-col items-center justify-start gap-0"
+      className="w-64 tCardObs duration-150 shrink-0 snap-center h-80 max-w-[75%] bg-blue-50 p-4 rounded-md flex flex-col items-center justify-start gap-0"
     >
       {/* client review: client image */}
       <span
