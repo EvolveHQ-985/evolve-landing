@@ -50,6 +50,21 @@ body {
   -ms-overflow-style: none; /* For IE and Edge */
 }
 
+/* scroller for get started form */
+
+.GScroller::-webkit-scrollbar{
+  width: 5px;
+  opacity: 0;
+  transition-duration: 500ms;
+}
+.GScroller:hover::-webkit-scrollbar, .GScroller:focus::-webkit-scrollbar{
+  background-color: transparent;
+  opacity: 1;
+}
+.GScroller:hover::-webkit-scrollbar-thumb, .GScroller:focus::-webkit-scrollbar-thumb{
+  background-color: rgba(0, 0, 0, 0.521);
+}
+
 section::-webkit-scrollbar,
 div::-webkit-scrollbar,
 main::-webkit-scrollbar,
