@@ -54,12 +54,12 @@ export default function ContactSection() {
           className="!w-fit text-red-500"
           id="services"
           component="a"
-          href="mailto:evolveteam@gmail.com"
+          href="mailto:evolve985@gmail.com"
           sx={{
             fontWeight: "bolder",
           }}
         >
-          evolveteam@gmail.com
+          evolve985@gmail.com
         </Typography>
       </div>
       <GetStartedForm />
