@@ -1,9 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
-import { GetStartedFormInput } from "./GetStartedFormInput";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { getStartedFormData, getStartedFormSchema } from "./getStartedFormtype";
+import { Box, Button, Typography } from "@mui/material";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { MdErrorOutline } from "react-icons/md";
+import { emailClient } from "../../utils/email/client";
+import { GetStartedFormInput } from "./GetStartedFormInput";
+import { getStartedFormData, getStartedFormSchema } from "./getStartedFormtype";
+import { toast } from "react-toastify";
+import { BsCheckCircleFill } from "react-icons/bs";
 
 export default function GetStartedForm() {
   const {
@@ -13,29 +16,30 @@ export default function GetStartedForm() {
   } = useForm<getStartedFormData>({
     resolver: zodResolver(getStartedFormSchema),
   });
-  const onSubmit: SubmitHandler<getStartedFormData> = (data) => {
-    const { email, name, projectName, requestDescription, service } = data;
-
-    // handle data usage here > below is for sending a plain mail message
-    const subject = `Message from ${name}`;
-    const body = `
------------User Request Information-----------
-
-Name: ${name}
-Response email: ${email}
-
-
------------Project Information-----------
-
-Project name: ${projectName}
-Project service: ${service}
-
------------Project Description-----------
-
-${requestDescription}`;
-    const mailtoLink = `mailto:evolve985@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoLink;
+  const onSubmit: SubmitHandler<getStartedFormData> = async (data) => {
+    try {
+      await emailClient({
+        ...data,
+        to_email: "evolve985@gmail.com",
+      }).then(() => {
+        toast(
+          "Mail has been sent to Evolve, please check you mailbox for any response",
+          {
+            hideProgressBar: true,
+            type: "success",
+            autoClose: false,
+            bodyClassName:
+              "!flex !flex-col text-center !box-border !p-4 !gap-4 items-center justify-center",
+            position: "top-center",
+            icon: (
+              <BsCheckCircleFill className="text-green-500 text-5xl scale-150" />
+            ),
+          }
+        );
+      });
+    } catch (error) {
+      return error;
+    }
   };
 
   // Extracted variables for conditional logic on the textarea classes
@@ -43,9 +47,7 @@ ${requestDescription}`;
     "w-full h-64 max-h-[90vh] GScroller p-3 rounded-md border-[1px] bg-transparent outline-none resize-none";
   const focusClasses =
     "border-black/30 hover:border-black/80 focus:border-black/80";
-  const errorBorderClass = errors.requestDescription
-    ? "border-red-500"
-    : focusClasses;
+  const errorBorderClass = errors.message ? "border-red-500" : focusClasses;
 
   const combinedClasses = `${baseClasses} ${errorBorderClass}`;
 
@@ -61,7 +63,7 @@ ${requestDescription}`;
             errors={errors}
             register={register}
             label={"Name"}
-            name={"name"}
+            name={"from_name"}
           />
           <GetStartedFormInput
             errors={errors}
@@ -75,13 +77,13 @@ ${requestDescription}`;
             errors={errors}
             register={register}
             label={"Email"}
-            name={"email"}
+            name={"from_email"}
           />
           <GetStartedFormInput
             errors={errors}
             register={register}
             label={"Project name"}
-            name={"projectName"}
+            name={"project_name"}
           />
         </div>
       </div>
@@ -91,7 +93,8 @@ ${requestDescription}`;
         </Typography>
         <textarea
           className={combinedClasses}
-          {...register("requestDescription")}
+          id="message"
+          {...register("message")}
         />
         <Typography
           variant="caption"
@@ -99,10 +102,10 @@ ${requestDescription}`;
           color="error"
           className="w-fit !flex gap-2 !items-center !justify-start !text-xs sm:!text-sm"
         >
-          {errors.requestDescription && errors.requestDescription.message ? (
+          {errors.message && errors.message.message ? (
             <>
               <MdErrorOutline className="!text-sm sm:!text-base -mt-[2px] sm:mt-0" />
-              {errors.requestDescription.message}
+              {errors.message.message}
             </>
           ) : (
             <>&nbsp;</>

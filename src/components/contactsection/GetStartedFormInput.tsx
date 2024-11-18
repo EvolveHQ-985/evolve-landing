@@ -9,7 +9,7 @@ type FormErrors<T> = {
 };
 interface FormInputProp {
   label: string;
-  name: "email" | "name" | "service" | "projectName" | "requestDescription";
+  name: "from_name" | "from_email" | "service" | "project_name" | "message";
   type?: "text" | "email";
   register?: UseFormRegister<getStartedFormData>;
   errors?: FormErrors<getStartedFormData>;
@@ -49,6 +49,7 @@ export const GetStartedFormInput: React.FC<FormInputProp> = ({
         }}
         margin="dense"
         type={type}
+        id={name}
         {...(register ? register(name) : {})}
       />
       <Typography
