@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate("/contact");
   };
 
   // Detect which section is currently active on scroll
@@ -121,6 +121,16 @@ const Header: React.FC = () => {
         {/* Navigation links for larger screens */}
         <nav className="hidden md:flex space-x-6">
           <Link
+            to="/"
+            className={
+              activeSection === "home"
+                ? `${linkClasses} text-red-500 bg-gray-200 rounded`
+                : linkClasses
+            }
+          >
+            <span className="text-lg">Home</span>
+          </Link>
+          <Link
             to="/services"
             className={
               activeSection === "services"
@@ -140,16 +150,7 @@ const Header: React.FC = () => {
           >
             <span className="text-lg">About us</span>
           </Link>
-          <Link
-            to="/products"
-            className={
-              activeSection === "products"
-                ? `${linkClasses} text-red-500 bg-gray-200 rounded`
-                : linkClasses
-            }
-          >
-            <span className="text-lg">Products</span>
-          </Link>
+
           <div className="flex items-center space-x-2 ">
             <button
               onClick={handleLoginClick}
