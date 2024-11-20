@@ -1,5 +1,4 @@
 import { CiLinkedin, CiMail } from "react-icons/ci";
-import { HiOutlinePhone } from "react-icons/hi";
 import { IoLogoInstagram } from "react-icons/io";
 import { RiFacebookFill, RiTwitterXFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -82,13 +81,7 @@ export default function Footer() {
               <CiMail className="font-bold text-white" /> <span>Email:</span>{" "}
               evolve985@gmail.com
             </a>
-            <a
-              href="tel:+2342551547785"
-              className="flex items-center gap-2 text-gray-300"
-            >
-              <HiOutlinePhone />
-              <span>Phone:</span> +234 255 154 7785
-            </a>
+
             <div className="flex items-baseline gap-3">
               <Link to="#Pricing">
                 <RiTwitterXFill className="text-xl" />
