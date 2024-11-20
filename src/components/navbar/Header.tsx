@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate("/contact");
   };
 
   // Detect which section is currently active on scroll
@@ -154,7 +154,7 @@ const Header: React.FC = () => {
             <button
               onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded"
-              aria-label="Login"
+              aria-label="contact"
             >
               Contact us
             </button>
@@ -291,7 +291,7 @@ const Header: React.FC = () => {
             <button
               onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded w-full max-w-[20rem] font-semibold"
-              aria-label="Login"
+              aria-label="contact"
             >
               Contact Us
             </button>
