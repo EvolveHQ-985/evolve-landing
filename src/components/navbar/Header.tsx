@@ -1,6 +1,7 @@
 // Header.tsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { PiBuildingOffice } from "react-icons/pi";
@@ -11,11 +12,12 @@ const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
 
   const handleLoginClick = () => {
     navigate("/contact");
@@ -121,6 +123,16 @@ const Header: React.FC = () => {
         {/* Navigation links for larger screens */}
         <nav className="hidden md:flex space-x-6">
           <Link
+            to="/"
+            className={
+              activeSection === "home"
+                ? `${linkClasses} text-red-500 bg-gray-200 rounded`
+                : linkClasses
+            }
+          >
+            <span className="text-lg">Home</span>
+          </Link>
+          <Link
             to="/services"
             className={
               activeSection === "services"
@@ -140,19 +152,9 @@ const Header: React.FC = () => {
           >
             <span className="text-lg">About us</span>
           </Link>
-          <Link
-            to="/products"
-            className={
-              activeSection === "products"
-                ? `${linkClasses} text-red-500 bg-gray-200 rounded`
-                : linkClasses
-            }
-          >
-            <span className="text-lg">Products</span>
-          </Link>
+
           <div className="flex items-center space-x-2 ">
             <button
-              onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded"
               aria-label="contact"
             >
@@ -289,7 +291,6 @@ const Header: React.FC = () => {
           </div>
           <div className="flex items-center w-full h-full max-h-[5rem] border-r-2 pr-4">
             <button
-              onClick={handleLoginClick}
               className="text-white bg-black px-4 py-2 rounded w-full max-w-[20rem] font-semibold"
               aria-label="contact"
             >

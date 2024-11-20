@@ -1,3 +1,5 @@
+
+import WhoWeAre from "../components/WhoWeAre/WhoWeAre";
 import ContactSection from "../components/contactsection/ContactSection";
 import HeroSection from "../components/herosection/HeroSection";
 import HowWeWork from "../components/howwework/HowWeWork";
@@ -9,6 +11,7 @@ export default function Home() {
   return (
     <section className="w-full h-full">
       <HeroSection />
+       <WhoWeAre/>
       <Service />
       <HowWeWork />
       <WhyUs />
