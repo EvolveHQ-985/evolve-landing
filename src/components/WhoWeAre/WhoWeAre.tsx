@@ -2,9 +2,15 @@ import LeftHandMobileSvg from "./LeftHandMobileSvg";
 import LeftHandSvg from "./LeftHandSvg";
 import RightHandMobileSvg from "./RightHandMobileSvg";
 import RightHandSvg from "./RightHandSvg";
+import {useNavigate} from "react-router-dom"
 
 
 export default function WhoWeAre() {
+  const navigate = useNavigate();
+
+  const handleClickContact = () =>{
+    navigate("/contact")
+  }
   return (
     <section className="w-full h-auto px-2 lg:px-20 md:pt-1">
       <div className="relative flex justify-between w-full h-auto">
@@ -30,7 +36,7 @@ full-stack development. We believe that design and technology should work
 seamlessly together, creating solutions that not only look great but perform 
                 exceptionally.
               </p>
-              <button className="hidden md:block bg-black text-white w-[10rem] py-3 rounded-lg">Get Started</button>
+              <button className="hidden md:block bg-black text-white w-[10rem] py-3 rounded-lg" onClick={handleClickContact}>Get Started</button>
             </div>
             <div className="w-full h-[11rem] md:w-[40rem] md:h-[20rem] rounded-xl overflow-hidden shadow-xl">
               <img src="https://media.istockphoto.com/id/2115292100/photo/four-cheerful-adults-enjoying-coffee-break-in-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=YIx9rxS_-TMdc-DqlYQimppr3cmkQAvJEKnnoFSYWH4=" alt="#"

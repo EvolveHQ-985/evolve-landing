@@ -12,7 +12,7 @@ const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -157,6 +157,7 @@ const Header: React.FC = () => {
             <button
               className="text-white bg-black px-4 py-2 rounded"
               aria-label="contact"
+              onClick={handleLoginClick}
             >
               Contact us
             </button>
@@ -293,6 +294,7 @@ const Header: React.FC = () => {
             <button
               className="text-white bg-black px-4 py-2 rounded w-full max-w-[20rem] font-semibold"
               aria-label="contact"
+              onClick={handleLoginClick}
             >
               Contact Us
             </button>

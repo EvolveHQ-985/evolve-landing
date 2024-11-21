@@ -19,7 +19,7 @@ import {
   ProductsPage,
   ServicesPage,
   AboutPage,
-  ContactUs,
+  Contact,
 } from "./App";
 
 const router = createBrowserRouter(
@@ -34,7 +34,7 @@ const router = createBrowserRouter(
         {/* go to file /src/page/Services.tsx to modify the product page */}
         <Route path="/about" element={<AboutPage />} />{" "}
         {/* go to file /src/page/About.tsx to modify the product page */}
-        <Route path="/contact" element={<ContactUs />} />{" "}
+        <Route path="/contact" element={<Contact />} />{" "}
         {/* go to file /src/page/About.tsx to modify the product page */}
       </Route>
     </Route>
