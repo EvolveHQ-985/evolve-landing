@@ -1,17 +1,25 @@
-// MainLayout file to house the Routes
+import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../components/navbar/Header";
-import Footer from "../components/footer/Footer";
 
+// Use lazy to load Header and Footer components
+const Header = React.lazy(() => import("../components/navbar/Header"));
+const Footer = React.lazy(() => import("../components/footer/Footer"));
 
 const MainLayouts = () => {
   return (
     <main className="h-full w-full">
-      <Header />
+      {/* Use Suspense to wrap lazy-loaded components */}
+      <Suspense fallback={<div></div>}>
+        <Header />
+      </Suspense>
+      
       <section className="h-full md:px-0 w-full pb-[0.5rem]">
         <Outlet />
       </section>
-      <Footer/>
+      
+      <Suspense fallback={<div></div>}>
+        <Footer />
+      </Suspense>
     </main>
   );
 };

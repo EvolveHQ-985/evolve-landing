@@ -16,7 +16,6 @@ import {
   Home,
   Root,
   NotFoundPage,
-  ProductsPage,
   ServicesPage,
   AboutPage,
   Contact,
@@ -28,7 +27,6 @@ const router = createBrowserRouter(
       {/* Pages with Header inside here */}
       <Route element={<MainLayouts />}>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductsPage />} />{" "}
         {/* go to file /src/page/Products.tsx to modify the product page */}
         <Route path="/services" element={<ServicesPage />} />{" "}
         {/* go to file /src/page/Services.tsx to modify the product page */}

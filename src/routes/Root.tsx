@@ -1,15 +1,23 @@
-// Root file for routes
-
+import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-// import file for the pages scroll resetter
-import AutoResetPagesScroll from "../components/AutoResetPagesScroll/AutoResetPagesScroll";
+
+// Lazy load the AutoResetPagesScroll component
+const AutoResetPagesScroll = React.lazy(() =>
+  import("../components/AutoResetPagesScroll/AutoResetPagesScroll")
+);
 
 function Root() {
   return (
     <div className="w-full h-full">
-      {/* this will reset the scroll position of the page when a new route is navigated to */}
-      <AutoResetPagesScroll />
-      <Outlet />
+      {/* Wrap lazy-loaded component in Suspense */}
+      <Suspense fallback={<div></div>}>
+        <AutoResetPagesScroll />
+      </Suspense>
+      
+      {/* Wrap Outlet to manage lazy-loaded nested routes */}
+      <Suspense fallback={<div>Loading Page...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

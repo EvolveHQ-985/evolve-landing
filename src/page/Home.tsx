@@ -1,22 +1,45 @@
+import React, { Suspense } from "react";
 
-import WhoWeAre from "../components/WhoWeAre/WhoWeAre";
-import ContactSection from "../components/contactsection/ContactSection";
+// Lazy load components
+const WhoWeAre = React.lazy(() => import("../components/WhoWeAre/WhoWeAre"));
+const Service = React.lazy(() => import("../components/ourservices/Service"));
+const HowWeWork = React.lazy(() => import("../components/howwework/HowWeWork"));
+const WhyUs = React.lazy(() => import("../components/whyus/WhyUs"));
+const Testimonials = React.lazy(() => import("../components/testimonials/Testimonials"));
+const ContactSection = React.lazy(() => import("../components/contactsection/ContactSection"));
+
 import HeroSection from "../components/herosection/HeroSection";
-import HowWeWork from "../components/howwework/HowWeWork";
-import Service from "../components/ourservices/Service";
-import Testimonials from "../components/testimonials/Testimonials";
-import WhyUs from "../components/whyus/WhyUs";
 
 export default function Home() {
   return (
     <section className="w-full h-full">
+      {/* Hero Section is loaded immediately */}
       <HeroSection />
-       <WhoWeAre/>
-      <Service />
-      <HowWeWork />
-      <WhyUs />
-      <Testimonials />
-      <ContactSection />
+      
+      {/* Use Suspense for lazy-loaded components */}
+      <Suspense fallback={<div></div>}>
+        <WhoWeAre />
+      </Suspense>
+      
+      <Suspense fallback={<div></div>}>
+        <Service />
+      </Suspense>
+      
+      <Suspense fallback={<div></div>}>
+        <HowWeWork />
+      </Suspense>
+      
+      <Suspense fallback={<div></div>}>
+        <WhyUs />
+      </Suspense>
+      
+      <Suspense fallback={<div></div>}>
+        <Testimonials />
+      </Suspense>
+      
+      <Suspense fallback={<div></div>}>
+        <ContactSection />
+      </Suspense>
     </section>
   );
 }
