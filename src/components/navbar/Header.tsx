@@ -5,7 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { PiBuildingOffice } from "react-icons/pi";
-import { IoLogoFirebase } from "react-icons/io5";
+import { LuLayoutDashboard } from "react-icons/lu";
+import {ReactComponent as LogoSvg} from './LogoSvg'
+
 
 const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
 
@@ -254,6 +256,18 @@ const Header: React.FC = () => {
           </div>
           <div className="flex flex-col items-start space-y-4 gap-3 border-r-2 h-full max-h-[40rem] pt-3 pb-9 pr-4">
             <Link
+              to="/"
+              className={
+                activeSection === "/"
+                  ? `${linkClasses} text-red-500 bg-gray-200 w-full px-2 py-2 shadow-custom rounded`
+                  : linkClasses
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              <LuLayoutDashboard className="text-2xl" />{" "}
+              <span>Home</span>
+            </Link>
+            <Link
               to="/services"
               className={
                 activeSection === "services"
@@ -276,18 +290,6 @@ const Header: React.FC = () => {
             >
               <PiBuildingOffice className="text-2xl" />
               <span>About us</span>
-            </Link>
-            <Link
-              to="/products"
-              className={
-                activeSection === "products"
-                  ? `${linkClasses} text-red-500 bg-gray-200 w-full px-2 py-2 shadow-custom rounded`
-                  : linkClasses
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              <IoLogoFirebase className="text-2xl" />
-              <span>Products</span>
             </Link>
           </div>
           <div className="flex items-center w-full h-full max-h-[5rem] border-r-2 pr-4">
