@@ -6,7 +6,6 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { PiBuildingOffice } from "react-icons/pi";
 import { LuLayoutDashboard } from "react-icons/lu";
-import {ReactComponent as LogoSvg} from './LogoSvg'
 
 
 const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
