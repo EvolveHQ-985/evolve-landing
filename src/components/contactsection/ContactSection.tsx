@@ -5,7 +5,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="w-full bg-neutral-100 px-4 md:px-5 lg:px-[8rem] py-10 flex flex-col gap-4"
+      className="w-full bg-neutral-100 px-4 md:px-5 lg:px-[20rem] py-10 flex flex-col gap-4"
     >
       {/* Header and headline paragraph */}
 

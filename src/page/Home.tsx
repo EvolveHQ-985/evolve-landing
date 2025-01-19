@@ -12,7 +12,7 @@ import HeroSection from "../components/herosection/HeroSection";
 
 export default function Home() {
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full flex flex-col">
       {/* Hero Section is loaded immediately */}
       <HeroSection />
       
