@@ -1,9 +1,17 @@
 import { CiLinkedin, CiMail } from "react-icons/ci";
 import { IoLogoInstagram } from "react-icons/io";
-import { RiFacebookFill, RiTwitterXFill } from "react-icons/ri";
+import { RiTwitterXFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useModal } from "../../hooks/useModal";
+import { Modal } from "../modal/Modal";
+import PrivacyPolicy from "../privacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "../termsAndConditions/TermsAndConditions";
 
 export default function Footer() {
+  const { isOpen, openModal, closeModal, isOpen2, openModal2, closeModal2 } = useModal()
+
+  const currentYear: number = new Date().getFullYear()
+
   return (
     <section className="w-full bg-black text-white flex flex-col items-center justify-center gap-10 pt-10">
       <div className="flex flex-col w-full items-center justify-center gap-5 px-5">
@@ -31,17 +39,8 @@ export default function Footer() {
             <Link to="/services" className="text-gray-300">
               Services
             </Link>
-            <Link to="/howItWorks" className="text-gray-300">
+            <Link to="how-we-work" className="text-gray-300">
               How it works
-            </Link>
-            <Link to="#testimonies" className="text-gray-300">
-              Testimonials
-            </Link>
-            <Link to="#Pricing" className="text-gray-300">
-              Pricing
-            </Link>
-            <Link to="#FAQ" className="text-gray-300">
-              FAQ
             </Link>
             <Link to="/contact" className="text-gray-300">
               Contact
@@ -52,26 +51,41 @@ export default function Footer() {
             <Link to="/" className="text-gray-300">
               Company profile
             </Link>
-            <Link to="/services" className="text-gray-300">
-              Careers
+            <Link to="about" className="text-gray-300">
+              About Us
             </Link>
-            <Link to="#howItWorks" className="text-gray-300">
+            <Link to="how-we-work" className="text-gray-300">
               Our team
             </Link>
           </div>
           <div className="w-full max-w-[170px] flex flex-col gap-3">
             <b className="text-xl">More</b>
-            <Link to="/" className="text-gray-300">
-              Pricacy policy
-            </Link>
-            <Link to="#Services" className="text-gray-300">
+            <button onClick={openModal} className="text-gray-300 text-start">
+              Privacy Policy
+            </button>
+            <Modal
+              isOpen={isOpen}
+              onClose={closeModal}
+              title="Privacy Policy"
+            >
+             <PrivacyPolicy/>
+            </Modal>
+
+            <button onClick={openModal2} className="text-gray-300 text-start">
               Terms & Conditions
-            </Link>
+            </button>
+            <Modal
+              isOpen={isOpen2}
+              onClose={closeModal2}
+              title="Terms & Conditions"
+            >
+             <TermsAndConditions/>
+            </Modal>
           </div>
           <div className="w-full max-w-[300px] flex flex-col gap-3">
             <b className="text-xl">Contacts</b>
             <p className="text-gray-300 w-full max-w-[15rem]">
-              Do have a question you need help? Get in touch:
+              Do you have a question you need help? Get in touch:
             </p>
             <p className="text-gray-300">Mon - Fri (7am - 6pm)</p>
             <a
@@ -83,24 +97,24 @@ export default function Footer() {
             </a>
 
             <div className="flex items-baseline gap-3">
-              <Link to="#Pricing">
+              <Link to="https://x.com/evolveofficials?t=7dSINeJvFeaTKg7EpbkIQA&s=09">
                 <RiTwitterXFill className="text-xl" />
               </Link>
-              <Link to="#FAQ">
+              <Link to="https://www.instagram.com/evolve_officials/?igsh=MXNua2xrZHlxZHU5OA%3D%3D#">
                 <IoLogoInstagram className="text-xl" />
               </Link>
-              <Link to="#contact">
+              <Link to="https://www.linkedin.com/company/evolve-ng/">
                 <CiLinkedin className="text-xl" />
               </Link>
-              <Link to="#contact">
+              {/* <Link to="#contact">
                 <RiFacebookFill className="text-xl" />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
       </div>
       <div className="py-5 border-t-2 w-full text-center border-gray-600 text-gray-500">
-        Copyright © 2024 Evolve
+        Copyright © {currentYear} Evolve
       </div>
     </section>
   );

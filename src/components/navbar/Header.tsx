@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { MdOutlineHomeRepairService } from "react-icons/md";
-import { PiBuildingOffice } from "react-icons/pi";
-import { LuLayoutDashboard } from "react-icons/lu";
 
 
 const linkClasses = "flex items-center hover:text-gray-400 space-x-2";
@@ -143,6 +140,7 @@ const Header: React.FC = () => {
           >
             <span className="text-lg">Our services</span>
           </Link>
+          
           <Link
             to="/about"
             className={
@@ -253,7 +251,7 @@ const Header: React.FC = () => {
               </svg>
             </Link>
           </div>
-          <div className="flex flex-col items-start space-y-4 gap-3 border-r-2 h-full max-h-[40rem] pt-3 pb-9 pr-4">
+          <div className="flex flex-col items-start space-y-3 gap-3 border-r-2 h-full max-h-[40rem] pt-3 pb-9 pr-4">
             <Link
               to="/"
               className={
@@ -263,8 +261,7 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <LuLayoutDashboard className="text-2xl" />{" "}
-              <span>Home</span>
+              <span className="text-lg">Home</span>
             </Link>
             <Link
               to="/services"
@@ -275,9 +272,9 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <MdOutlineHomeRepairService className="text-2xl" />{" "}
-              <span>Our services</span>
+              <span className="text-lg">Our services</span>
             </Link>
+            
             <Link
               to="/about"
               className={
@@ -287,8 +284,17 @@ const Header: React.FC = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <PiBuildingOffice className="text-2xl" />
-              <span>About us</span>
+              <span className="text-lg">About Us</span>
+            </Link>
+            <Link
+              to="/contact"
+              className={
+                activeSection === "contact"
+                  ? `${linkClasses} text-red-500 bg-gray-200 rounded`
+                  : linkClasses
+              }
+            >
+              <span className="text-lg">Contact Us</span>
             </Link>
           </div>
           <div className="flex items-center w-full h-full max-h-[5rem] border-r-2 pr-4">

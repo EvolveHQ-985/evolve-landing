@@ -5,6 +5,7 @@ import Home from "./page/Home";
 import { ServicesPage } from "./page/Services";
 import { AboutPage } from "./page/About";
 import Contact from "./page/Contact";
+import HowWeWorkPage from './page/HowWeWorkPage';
 
 export {
   MainLayouts,
@@ -14,4 +15,5 @@ export {
   ServicesPage,
   AboutPage,
   Contact,
+  HowWeWorkPage,
 };

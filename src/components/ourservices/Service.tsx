@@ -2,7 +2,7 @@ export default function Service() {
     const EvolveData = [
       {
         id: 0,
-        title: 'Design',
+        title: 'UI / UX & Designs',
         description:
           'We create intuitive, engaging digital experiences with stunning visuals that enhance user interaction and strengthen your brands identity.',
       },
